@@ -58,7 +58,7 @@ public class Aula implements Serializable {
     private Date fechaModificacion;
 
     @ManyToOne(optional = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinColumn(name = "pabellon_id", foreignKey = @ForeignKey(name = "FK_PABELLON_ID"))
+    @JoinColumn(name = "pabellon_id", foreignKey = @ForeignKey(name = "FK_AULA_PABELLON_ID"))
     private Pabellon pabellon;
 
     public Aula(Long id, Integer numAula, String medidas, Integer cantidadPupitres, TipoPizarron tipoPizarron,
@@ -101,8 +101,6 @@ public class Aula implements Serializable {
             return false;
         return true;
     }
-
-    
 
     @Override
     public String toString() {
