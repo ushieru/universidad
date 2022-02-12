@@ -32,7 +32,7 @@ public class Profesor extends Persona {
     @JoinTable(name = "profesor_carrera", schema = "universidad", joinColumns = @JoinColumn(name = "persona_id"), inverseJoinColumns = @JoinColumn(name = "carrera_id"))
     private Set<Carrera> carreras;
 
-    Profesor(Long id, String nombre, String apellido, String dni, Direccion direccion, BigDecimal sueldo) {
+    public Profesor(Long id, String nombre, String apellido, String dni, Direccion direccion, BigDecimal sueldo) {
         super(id, nombre, apellido, dni, direccion);
         this.sueldo = sueldo;
     }

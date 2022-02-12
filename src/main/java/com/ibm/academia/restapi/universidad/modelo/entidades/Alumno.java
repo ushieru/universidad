@@ -25,7 +25,7 @@ public class Alumno extends Persona {
     @JoinColumn(name = "carrera_id", foreignKey = @ForeignKey(name = "FK_CARRERA_ID"))
     private Carrera carrera;
 
-    Alumno(Long id, String nombre, String apellido, String dni, Direccion direccion) {
+    public Alumno(Long id, String nombre, String apellido, String dni, Direccion direccion) {
         super(id, nombre, apellido, dni, direccion);
     }
 
