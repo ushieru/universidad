@@ -11,7 +11,6 @@ import com.ibm.academia.restapi.universidad.modelo.entidades.Empleado;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Pabellon;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Persona;
 import com.ibm.academia.restapi.universidad.servicios.EmpleadoDAO;
-import com.ibm.academia.restapi.universidad.utils.IterableToSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -58,8 +57,7 @@ class EmpleadoTest {
 	@Test
 	@DisplayName("Empleado - findEmpleadoByTipoEmpleado")
 	void findEmpleadoByTipoEmpleado() {
-		Set<Persona> empleados = IterableToSet
-				.parse(empleadoDAO.findEmpleadoByTipoEmpleado(TipoEmpleado.ADMINISTRATIVO));
+		Set<Persona> empleados = (Set<Persona>) empleadoDAO.findEmpleadoByTipoEmpleado(TipoEmpleado.ADMINISTRATIVO);
 
 		Integer expectedResult = 2;
 

@@ -10,7 +10,6 @@ import com.ibm.academia.restapi.universidad.modelo.entidades.Aula;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Direccion;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Pabellon;
 import com.ibm.academia.restapi.universidad.servicios.AulaDAO;
-import com.ibm.academia.restapi.universidad.utils.IterableToSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +48,7 @@ class AulaTest {
 	@Test
 	@DisplayName("Alumno - findAulasByTipoPizarron")
 	void alumnoFindAulasByTipoPizarron() {
-		Set<Aula> aulas = IterableToSet.parse(aulaDAO.findAulasByTipoPizarron(TipoPizarron.PIZARRON_BLANCO));
+		Set<Aula> aulas = (Set<Aula>) aulaDAO.findAulasByTipoPizarron(TipoPizarron.PIZARRON_BLANCO);
 
 		Integer expectedResult = 2;
 
@@ -59,7 +58,7 @@ class AulaTest {
 	@Test
 	@DisplayName("Alumno - findAulasByPabellonNombre")
 	void alumnoFindAulasByPabellonNombre() {
-		Set<Aula> aulas = IterableToSet.parse(aulaDAO.findAulasByPabellonNombre("nombre"));
+		Set<Aula> aulas = (Set<Aula>) aulaDAO.findAulasByPabellonNombre("nombre");
 
 		Integer expectedResult = 2;
 
@@ -69,7 +68,7 @@ class AulaTest {
 	@Test
 	@DisplayName("Alumno - findAulasByNumAula")
 	void alumnoFindAulasByNumAula() {
-		Set<Aula> aulas = IterableToSet.parse(aulaDAO.findAulasByNumAula(3));
+		Set<Aula> aulas = (Set<Aula>) aulaDAO.findAulasByNumAula(3);
 
 		Integer expectedResult = 1;
 

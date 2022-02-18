@@ -9,7 +9,6 @@ import com.ibm.academia.restapi.universidad.modelo.entidades.Carrera;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Direccion;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Persona;
 import com.ibm.academia.restapi.universidad.servicios.AlumnoDAO;
-import com.ibm.academia.restapi.universidad.utils.IterableToSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -41,7 +40,7 @@ class AlumnoTest {
 	@Test
 	@DisplayName("Alumno - buscarAlumnosPorNombreCarrera")
 	void alumnoBuscarAlumnosPorNombreCarrera() {
-		Set<Persona> alumnos = IterableToSet.parse(alumnoDAO.buscarAlumnosPorNombreCarrera(nombreCarrera));
+		Set<Persona> alumnos = (Set<Persona>) alumnoDAO.buscarAlumnosPorNombreCarrera(nombreCarrera);
 
 		Integer expectedResult = 1;
 

@@ -11,7 +11,6 @@ import com.ibm.academia.restapi.universidad.modelo.entidades.Direccion;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Profesor;
 import com.ibm.academia.restapi.universidad.servicios.CarreraDAO;
 import com.ibm.academia.restapi.universidad.servicios.ProfesorDAO;
-import com.ibm.academia.restapi.universidad.utils.IterableToSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +48,7 @@ class CarreraTest {
 	@Test
 	@DisplayName("Carrera - findCarrerasByNombreContains")
 	void findCarrerasByNombreContains() {
-		Set<Carrera> carreras = IterableToSet.parse(carreraDAO.findCarrerasByNombreContains("itec"));
+		Set<Carrera> carreras = (Set<Carrera>) carreraDAO.findCarrerasByNombreContains("itec");
 
 		Integer expectedResult = 1;
 
@@ -59,7 +58,7 @@ class CarreraTest {
 	@Test
 	@DisplayName("Carrera - findCarrerasByNombreContainsIgnoreCase")
 	void findCarrerasByNombreContainsIgnoreCase() {
-		Set<Carrera> carreras = IterableToSet.parse(carreraDAO.findCarrerasByNombreContainsIgnoreCase("arquite"));
+		Set<Carrera> carreras = (Set<Carrera>) carreraDAO.findCarrerasByNombreContainsIgnoreCase("arquite");
 
 		Integer expectedResult = 1;
 
@@ -69,7 +68,7 @@ class CarreraTest {
 	@Test
 	@DisplayName("Carrera - findCarrerasByCantidadAniosAfter")
 	void findCarrerasByCantidadAniosAfter() {
-		Set<Carrera> carreras = IterableToSet.parse(carreraDAO.findCarrerasByCantidadAniosAfter(3));
+		Set<Carrera> carreras = (Set<Carrera>) carreraDAO.findCarrerasByCantidadAniosAfter(3);
 
 		Integer expectedResult = 1;
 
@@ -79,8 +78,8 @@ class CarreraTest {
 	@Test
 	@DisplayName("Carrera - buscarCarrerasPorProfesorNombreYApellido")
 	void buscarCarrerasPorProfesorNombreYApellido() {
-		Set<Carrera> carreras = IterableToSet
-				.parse(carreraDAO.buscarCarrerasPorProfesorNombreYApellido("CProfeNombre", "CProfeApellido"));
+		Set<Carrera> carreras = (Set<Carrera>) carreraDAO.buscarCarrerasPorProfesorNombreYApellido("CProfeNombre",
+				"CProfeApellido");
 
 		Integer expectedResult = 1;
 

@@ -11,7 +11,6 @@ import com.ibm.academia.restapi.universidad.modelo.entidades.Direccion;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Persona;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Profesor;
 import com.ibm.academia.restapi.universidad.servicios.ProfesorDAO;
-import com.ibm.academia.restapi.universidad.utils.IterableToSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -45,7 +44,7 @@ class ProfesorTest {
 	@Test
 	@DisplayName("Profesor - findProfesoresByCarrera")
 	void findProfesoresByCarrera() {
-		Set<Persona> pabellones = IterableToSet.parse(profesorDAO.findProfesoresByCarrera("Filosofia"));
+		Set<Persona> pabellones = (Set<Persona>) profesorDAO.findProfesoresByCarrera("Filosofia");
 
 		Integer expectedResult = 1;
 

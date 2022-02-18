@@ -7,7 +7,6 @@ import java.util.Set;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Direccion;
 import com.ibm.academia.restapi.universidad.modelo.entidades.Pabellon;
 import com.ibm.academia.restapi.universidad.servicios.PabellonDAO;
-import com.ibm.academia.restapi.universidad.utils.IterableToSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -40,8 +39,7 @@ class PabellonTest {
 	@Test
 	@DisplayName("Pabellon - findPabellonesByDireccionLocalidad")
 	void findPabellonesByDireccionLocalidad() {
-		Set<Pabellon> pabellones = IterableToSet
-				.parse(pabellonDAO.findPabellonesByDireccionLocalidad("PabellonLocalidad"));
+		Set<Pabellon> pabellones = (Set<Pabellon>) pabellonDAO.findPabellonesByDireccionLocalidad("PabellonLocalidad");
 
 		Integer expectedResult = 2;
 
@@ -51,7 +49,7 @@ class PabellonTest {
 	@Test
 	@DisplayName("Pabellon - findPabellonesByNombre")
 	void findPabellonesByNombre() {
-		Set<Pabellon> pabellones = IterableToSet.parse(pabellonDAO.findPabellonesByNombre("pabellon_1"));
+		Set<Pabellon> pabellones = (Set<Pabellon>) pabellonDAO.findPabellonesByNombre("pabellon_1");
 
 		Integer expectedResult = 2;
 
