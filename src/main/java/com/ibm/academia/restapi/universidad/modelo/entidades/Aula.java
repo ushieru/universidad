@@ -17,7 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ibm.academia.restapi.universidad.enumeradoes.TipoPizarron;
 
 import lombok.Getter;
@@ -35,19 +39,29 @@ public class Aula implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Positive
     @Column(name = "numero_aula", nullable = false, length = 5)
     private Integer numAula;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "medidas")
     private String medidas;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "cantidad_pupitres")
     private Integer cantidadPupitres;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "tipo_pizarron")
     @Enumerated(EnumType.STRING)
     private TipoPizarron tipoPizarron;
 
+    @NotNull
+	@NotEmpty
     @Column(name = "usuario_creacion", nullable = false)
     private String usuarioCreacion;
 
@@ -59,6 +73,7 @@ public class Aula implements Serializable {
 
     @ManyToOne(optional = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "pabellon_id", foreignKey = @ForeignKey(name = "FK_AULA_PABELLON_ID"))
+    @JsonIgnoreProperties({ "aulas" })
     private Pabellon pabellon;
 
     public Aula(Long id, Integer numAula, String medidas, Integer cantidadPupitres, TipoPizarron tipoPizarron,

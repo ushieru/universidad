@@ -12,6 +12,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +29,14 @@ import lombok.Setter;
 @PrimaryKeyJoinColumn(name = "persona_id")
 public class Profesor extends Persona {
 
+    @NotNull
+    @Positive
     @Column(name = "sueldo")
     private BigDecimal sueldo;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "profesor_carrera", schema = "universidad", joinColumns = @JoinColumn(name = "persona_id"), inverseJoinColumns = @JoinColumn(name = "carrera_id"))
+    @JsonIgnoreProperties({ "profesores" })
     private Set<Carrera> carreras;
 
     public Profesor(Long id, String nombre, String apellido, String dni, Direccion direccion, BigDecimal sueldo) {

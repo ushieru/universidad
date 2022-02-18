@@ -16,6 +16,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,18 +32,30 @@ import lombok.Setter;
 @Entity
 @Table(name = "personas", schema = "universidad")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipo")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Alumno.class, name = "alumno"),
+        @JsonSubTypes.Type(value = Profesor.class, name = "profesor"),
+        @JsonSubTypes.Type(value = Empleado.class, name = "empleado")
+})
 public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "nombre", nullable = false, unique = true, length = 60)
     private String nombre;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "apellido", nullable = false, unique = true, length = 60)
     private String apellido;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "dni", nullable = false, unique = true, length = 10)
     private String dni;
 
@@ -49,12 +66,14 @@ public class Persona implements Serializable {
     })
     private Direccion direccion;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "usuario_creacion", nullable = false)
     private String usuarioCreacion;
 
     @Column(name = "fecha_creacion", nullable = false)
     private Date fechaCreacion;
-    
+
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
